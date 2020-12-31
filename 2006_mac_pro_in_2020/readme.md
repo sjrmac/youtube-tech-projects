@@ -1,3 +1,4 @@
+
 ## "2006 Mac Pro in 2020" Resources
 
 This document contains all the resource info and links for the "2006 Mac Pro in 2020" video along with some extra info and notes that I thought I should include. This info ONLY APPLIES for Mac Pro 1,1 and 2,1 models.
@@ -103,14 +104,20 @@ Once you boot into Windows Setup, feel free to setup as you wish. Once you get t
 
 **NOTE**: If you understand rEFInd and what it does, you'll notice there are .efi files in this **UEFI_NTFS** partition. You should be fine if you remove all the non ia32.efi files if you want to clean up a bit. I don't remember if everything was fine when I removed them. Let me know :D 
 
-It's time to install the Bootcamp drivers, but we'll need to do it a specific way.
+It's time to install the Bootcamp drivers, but we'll need to do it a specific way. You'll need the Bootcamp folder that **brigader** downloaded earlier. The folder should be named: **BootCamp-041-84868** (I don't think Apple released any package for 1,1/2,1 Mac Pros newer than this one)
 
+Now, navigate to this path: BootCamp-041-84868\Drivers\Apple
+![mac pro 2006 bootcamp drivers windows10 64 bit](https://raw.githubusercontent.com/sjrmac/youtube-tech-projects/main/2006_mac_pro_in_2020/Screenshot%202020-12-30%20215809.png)
 
-ADD INSTRUCTIONS HERE!!!!!!!!
+We need to run **BootCamp64**, but before we run it, we need to set the application compatibility mode to "**Previous versions of Windows**". Right click on **BootCamp64**, Click Properties, then go to the Compatibility tab:
+(Compatibility was set to Windows 7)
+![mac pro 2006 bootcamp drivers windows10 64 bit 2](https://raw.githubusercontent.com/sjrmac/youtube-tech-projects/main/2006_mac_pro_in_2020/Screenshot%202020-12-30%20221222.png)
 
-When the drivers finish installing, it's a good time to reboot, select the Windows drive manually during boot using the **Option** key, and then see if you need to download and install any Windows updates (chances are you will be doing so and that's fine.)
+After clicking Apply, you may now run **BootCamp64** and let it install. It will install the Bootcamp Control Panel as well, which works. I have an Apple wired keyboard with numpad and my Function keys work the same as macOS or OS X.
 
-And there you have it, Windows 10 is installed! If you want to tweak Windows further, or read my notes on what I did to improve my experience, read " " section.
+When the drivers finish installing, it's a good time to reboot. Select the Windows drive manually during boot using the **Option** key, and then see if you need to download and install any Windows updates (chances are you will be doing so and that's fine.)
+
+And there you have it, Windows 10 is installed! You now have the essential Bootcamp drivers you need. If you want to tweak Windows further, or read my notes on what I did to improve my experience, read "**Tuning Windows 10**" section.
 
 ## macOS El Capitan 10.11 Install Method One
 Installing El Capitan is much easier than Windows 10. In fact, **Hrutkay Mods** on YouTube made this so simple, it's hard to screw up.
@@ -191,6 +198,36 @@ I use it to auto-select and boot to Windows 10, since that's the only OS I have 
 ![rEFInd USB boot error Windows 10 Mac Pro](https://raw.githubusercontent.com/sjrmac/youtube-tech-projects/main/2006_mac_pro_in_2020/IMG_20201128_230405.jpg)
 
 **If you'd like to follow rEFInd's official tutorial, it is available here: http://www.rodsbooks.com/refind/installing.html#osx**
+
+## Tuning Windows 10
+I'm sure you can tune things further, but this is what I did:
+* Enable AHCI support (speed boost over using IDE, trust me, 100% worth the extra work)
+* Make the new Broadcom BCM94360CD wireless card work using Bootcamp drivers
+* **Hrutkay Mods** Bootcamp 6 package + benefits (worth considering and doing)
+
+**AHCI Guide:**
+I just followed **Hrutkay Mods** video on this. No need for me to put the instructions here as the video is perfect.
+https://www.youtube.com/watch?v=MAv4v5LhTWk
+
+**Broadcom BCM94360CD** support:
+I went and grabbed this Bootcamp driver package from Apple's website downloads as it was the latest one available*: 
+> https://support.apple.com/kb/DL1837?viewlocale=en_US&locale=en_US
+
+(*without using a Mac to grab the driver folder through the Bootcamp utility, or **brigader** to download a newer package)
+
+I then installed these drivers (Win8 one rather than Win7):
+![2006 mac pro windows 10 Broadcom BCM94360CD ](https://raw.githubusercontent.com/sjrmac/youtube-tech-projects/main/2006_mac_pro_in_2020/Screenshot%202020-12-30%20215958.png)
+
+Once you install those individually, they may or may not auto detect the hardware. You may need to go into **Device Manager** and manually set up the device with the proper driver. (Unchecking "Show compatible hardware" will let you find the right driver in the list)
+![enter image description here](https://raw.githubusercontent.com/sjrmac/youtube-tech-projects/main/2006_mac_pro_in_2020/Screenshot%202020-12-30%20221124.png)
+
+**Hrutkay Mods** has a video on newer Bootcamp drivers and there's a section in the video where he shows how to manually install drivers if you get stuck: 
+> https://www.youtube.com/watch?v=i0x96t8DSp4
+
+**Hrutkay Mods Bootcamp 6 Package installation**
+Just watch the videos :D (great content and reasoning behind doing this)
+> https://www.youtube.com/watch?v=i0x96t8DSp4
+> https://www.youtube.com/watch?v=PtnMPNlnj28
 
 ## Parts I Purchased
 Here's a list of the things I bought that I think are worthy upgrades and good for value. This should be self explanatory.
