@@ -10,6 +10,7 @@ This document contains all the resource info and links for the "2006 Mac Pro in 
  - Windows 10 install method
  - macOS El Capitan install method
  - rEFInd install info (I find this one handy!)
+ - Tuning Windows 10
 
  **Parts purchased**
  (This section will have links and names of the items I bought for my upgrades)
