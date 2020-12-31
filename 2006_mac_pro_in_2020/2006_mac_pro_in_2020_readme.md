@@ -90,15 +90,16 @@ On the Windows 10 machine, download the Win10 64Bit ISO, Rufus, then brigadier:
 Now's the time to hook up your HDD or SSD to the SATA caddy or SATA to USB adaptor that you want to use for the install. Make sure to identify which drive letter your external drive is mounted as. This is important because you don't want to accidentally wipe another drive out during the next few steps. Don't blame me if you select the wrong one!
 
 Here's an image of how you need to configure and run Rufus:
-
-IMAGE
+(if your SATA to USB device doesn't appear in Rufus, make sure "**List USB Hard Drives"** is checked and select the right drive.0
+![Rufus config for WinToGo 2006 Mac Pro](https://raw.githubusercontent.com/sjrmac/youtube-tech-projects/main/2006_mac_pro_in_2020/2006_mac_pro_windows_rufus1.png)
+![Rufus config for WinToGo 2006 Mac Pro 2](https://raw.githubusercontent.com/sjrmac/youtube-tech-projects/main/2006_mac_pro_in_2020/2006_mac_pro_windows_rufus2.png)
 
 While the WinToGo installation is being done through Rufus, we can use **brigadier** to grab the necessary Bootcamp drivers that we'll need on Windows to make the hardware talk to the software. You must run **brigadier** as Administrator in Windows (I've had issues without Admin privileges), then tell it what Mac model we need, which is "**MacPro2,1**". **Brigadier** will download the appropriate latest package for our Mac Pro and place it in the **Downloads** folder on Windows. When **brigadier** is finished, you can put its downloaded folder on the finished WinToGo disk created by **Rufus**, or on a flash drive so we can install the drivers from it later when we get Win10 booting.
 
 Once Rufus is finished creating the WinToGo disk, eject the drive safely, then go ahead and install the drive into one of the Mac Pro's SATA slots. The easiest way to boot to the new Windows install, is by holding the **Option** key while your Mac Pro starts up until you see the Boot Device selection. Choose the Windows disk and not the EFI Boot drive. You may or may not experience a few reboots before reaching the Windows setup environment. ***If you experience reboots here, just hold the Option key and select the Windows drive again manually.***
 
 Once you boot into Windows Setup, feel free to setup as you wish. Once you get to the desktop, you've successfully finished the initial install. If you open File Explorer and select "This PC", you'll notice that there is a drive called "**UEFI_NTFS**" and you can ignore it. This drive is a partition that Rufus made so that the WinToGo installation could be bootable on a system with UEFI. 
-
+![Rufus Mac Pro 2006 UEFI_NTFS partition in File Explorer](https://raw.githubusercontent.com/sjrmac/youtube-tech-projects/main/2006_mac_pro_in_2020/IMG_20201129_102629.jpg)
 
 **NOTE**: If you understand rEFInd and what it does, you'll notice there are .efi files in this **UEFI_NTFS** partition. You should be fine if you remove all the non ia32.efi files if you want to clean up a bit. I don't remember if everything was fine when I removed them. Let me know :D 
 
@@ -117,7 +118,6 @@ Installing El Capitan is much easier than Windows 10. In fact, **Hrutkay Mods** 
 I'm gonna write a guide on how I did the install as well as it turned out to be an adventure because I had to work around a few limitations to get what I wanted haha :D
 
 Here's what you need:
-
  - Spare wiped HDD or SSD installed in the machine
  - Internet connection
  - Flash drive 8GB or larger (format as MacOS Extended Journaled)
@@ -183,8 +183,12 @@ To get rEFInd installed and working properly, you need to do the following:
 And thats it! I recommend rebooting now, then using rEFInd to boot to the macOS recovery partition and enabling **System Integrity Protection** again in Terminal (again, only if on macOS 10.11, older OSes don't apply to this feature):
 > csrutil enable
 
-Congratulations, rEFInd is installed. It's up to you how you use it now :)
-I use it to auto-select and boot to Windows 10, since that's the only OS I have use for on my Mac Pro. Windows 10 also seems to start quicker through rEFInd. If you try, you'll end up seeing this message on your display:
+Congratulations, rEFInd is installed. It's up to you how you use it now :) Just remember that rEFInd is installed on a disk and is not part of the firmware, so if you remove the drive that rEFInd is on, the Mac will not start it without that drive.
+My install boots up and works great:
+![rEFInd on 2006 Mac Pro 1,1 2,1](https://raw.githubusercontent.com/sjrmac/youtube-tech-projects/main/2006_mac_pro_in_2020/IMG_20201129_100100.jpg)
+
+I use it to auto-select and boot to Windows 10, since that's the only OS I have use for on my Mac Pro. Windows 10 also seems to start quicker through rEFInd. If you try booting a Windows installer USB through rEFInd, you'll end up seeing this message on your display:
+![rEFInd USB boot error Windows 10 Mac Pro](https://raw.githubusercontent.com/sjrmac/youtube-tech-projects/main/2006_mac_pro_in_2020/IMG_20201128_230405.jpg)
 
 **If you'd like to follow rEFInd's official tutorial, it is available here: http://www.rodsbooks.com/refind/installing.html#osx**
 
@@ -204,7 +208,6 @@ Total after tax: $92.85
 **NOTE**: The reason I got the PCIe power cables was due to the fact that I had planned to put a different GPU in the Mac Pro (like the Radeon 5870 I had in the YouTube video). Unfortunately, I didn't get the 5870 to work, but those cables could serve useful depending on what kind of GPU I could get in the future. **Get the type that suites your needs :D**
 
 **Compatibility Notes:**
-
  - The ORICO USB 3.0 card I list here isn't compatible with macOS or OS X. Works great in Windows 10 with the driver!
  - The Broadcom BCM94360CD wireless card upgrade is great if you are fine without having wireless in Mac OS X 10.7 Lion. Works in macOS 10.11 El Capitan perfectly, and in Windows 10, with the proper Bootcamp driver as well (Check extra notes to read up on how I got it working).
 
